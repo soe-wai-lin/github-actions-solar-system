@@ -23,6 +23,13 @@
           with:
             node-version: 20
 
+        - name: Cache NPM dependencies
+          uses: actions/cache@v4.2.3
+          with:
+            path: ~/.npm
+            key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
+
+
         - name: Install Dependencies
           run: npm install
 
@@ -47,6 +54,14 @@
           uses: actions/setup-node@v4
           with:
             node-version: 18
+
+        - name: Cache NPM dependencies
+          uses: actions/cache@v4.2.3
+          with:
+            path: ~/.npm
+            key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
+
+
 
         - name: install nodejs dependencies
           run: npm install

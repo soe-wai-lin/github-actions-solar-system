@@ -45,6 +45,7 @@
             path: test-results.xml
 
     code-coverage:
+      needs: unit-testing
       name: code-coverage
       runs-on: ubuntu-latest
       steps:
@@ -71,6 +72,7 @@
             retention-days: 5
 
     docker:
+      needs: code-coverage
       name: docker build
       runs-on: ubuntu-latest
       steps:

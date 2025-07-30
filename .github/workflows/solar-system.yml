@@ -24,7 +24,7 @@
             node-version: 20
 
         - name: Cache NPM dependencies
-          uses: actions/cache@v4.2.3
+          uses: actions/cache@v4
           with:
             path: ~/.npm
             key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'

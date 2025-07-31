@@ -104,12 +104,12 @@
           uses: actions/checkout@v4.2.2
 
         - name: setup kubectl
-          uses: Azure/setup-kubectl@v4.0.1
+          uses: azure/setup-kubectl@v4
           with:
             version: 'v1.28.1'
 
         - name: K8s set context action
-          uses: Azure/k8s-set-context@v4.0.1
+          uses: azure/k8s-set-context@v4
           with:
             kubeconfig: '${{ secrets.KUBECONFIG }}'
 

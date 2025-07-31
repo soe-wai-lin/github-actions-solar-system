@@ -113,7 +113,6 @@
           with:
             kubeconfig: '${{ secrets.KUBECONFIG }}'
 
-        - run: kubectl version -o yaml
 
         - name: fetch nginx ingress IP
           run: > 

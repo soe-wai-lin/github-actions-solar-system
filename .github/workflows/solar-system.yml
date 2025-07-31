@@ -109,7 +109,7 @@
             version: 'v1.28.1'
 
         - name: K8s set context action
-          uses: ossrs/k8s-set-context-action@v1
+          uses: Azure/k8s-set-context@v4.0.1
           with:
             kubeconfig: '${{ secrets.KUBECONFIG }}'
 

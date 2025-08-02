@@ -6,11 +6,43 @@ on:
             required: true
             type: string
             description: "Provide the Ingress URL"
+# jobs:
+#   integration-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - env:
+#           URL: '${{ inputs.ingress-url }}'
+#         run: |
+#           curl https://$URL/live -s -k | jq -r .status | grep -i live
+
 jobs:
-  integration-test:
-    runs-on: ubuntu-latest
-    steps:
-      - env:
-          URL: '${{ inputs.ingress-url }}'
-        run: |
-          curl https://$URL/live -s -k | jq -r .status | grep -i live
+    unit-testing:
+      name: Unit Testing
+      runs-on: ubuntu-latest
+      container: node:20
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+
+        - name: Cache NPM dependencies
+          uses: actions/cache@v4
+          with:
+            path: ~/.npm
+            key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
+
+
+        - name: Install Dependencies
+          run: npm install
+
+        - name: Unit Testing
+          run: npm test
+
+        - name: Archive Test Result
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: Mocha-Test-Result
+            path: test-results.xml
+
+

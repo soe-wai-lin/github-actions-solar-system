@@ -11,7 +11,7 @@
   #   MONGO_USERNAME: superuser
   #   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
   jobs:
-    workflow_call:
+    unit-testing-workflow_call:
       uses: ./.github/workflows/reusable-workflow.yml
       secrets: 
         mongo_passwd: ${{ secrets.MONGO_PASSWORD }}

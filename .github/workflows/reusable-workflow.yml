@@ -10,9 +10,10 @@ on:
       mongo_passwd: 
         required: true
     inputs:
-        mongo_url:
+        mongo_uri:
           required: true
           type: string
+          
 
 jobs:
     unit-testing:

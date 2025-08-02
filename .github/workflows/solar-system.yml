@@ -17,6 +17,10 @@
         mongo_passwd: ${{ secrets.MONGO_PASSWORD }}
       with:
         mongo_uri: ${{ vars.MONGO_URI }}
+    code-coverage-workflow-call:
+      uses: ./.github/workflows/reuse-code-coverage.yml
+
+
     # unit-testing:
     #   name: Unit Testing
     #   runs-on: ubuntu-latest
@@ -50,34 +54,33 @@
     #         name: Mocha-Test-Result
     #         path: test-results.xml
 
-    code-coverage:
-      name: code-coverage
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout repo
-          uses: actions/checkout@v4.2.2
+    # code-coverage:
+    #   name: code-coverage
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #     - name: checkout repo
+    #       uses: actions/checkout@v4.2.2
 
-        - name: setup node
-          uses: actions/setup-node@v4
-          with:
-            node-version: 18
+    #     - name: setup node
+    #       uses: actions/setup-node@v4
+    #       with:
+    #         node-version: 18
 
-        - name: install nodejs dependencies
-          run: npm install
+    #     - name: install nodejs dependencies
+    #       run: npm install
 
-        - name: code-coverage
-          run: npm run coverage
-          continue-on-error: true
+    #     - name: code-coverage
+    #       run: npm run coverage
+    #       continue-on-error: true
 
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v4.6.2
-          with:
-            name: Code-Coverage-Result
-            path: coverage
-            retention-days: 5
+    #     - name: Upload artifacts
+    #       uses: actions/upload-artifact@v4.6.2
+    #       with:
+    #         name: Code-Coverage-Result
+    #         path: coverage
+    #         retention-days: 5
 
     docker:
-      needs: code-coverage
       name: docker build
       runs-on: ubuntu-latest
       steps:

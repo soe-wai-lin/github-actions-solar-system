@@ -8,13 +8,14 @@
         - feature/*
   env:
     MONGO_URI: mongodb+srv://supercluster.d83jj.mongodb.net/superData
-    MONGO_USERNAME: superuser
-    MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+  #   MONGO_USERNAME: superuser
+  #   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
   jobs:
     workflow_call:
       uses: ./.github/workflows/reusable-workflow.yml
       secrets: 
         mongo_passwd: ${{ secrets.MONGO_PASSWORD }}
+        mongo_username: ${{ secrets.MONGO_USERNAME }}
       with:
         inputs:
           mongo_url: ${{ vars.MONGO_URI }}

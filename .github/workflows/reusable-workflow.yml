@@ -9,12 +9,10 @@ on:
     secrets:
       mongo_passwd: 
         required: true
-      mongo_username:
-        required: true
     inputs:
         mongo_url:
-            required: true
-            type: string
+          required: true
+          type: string
 
 jobs:
     unit-testing:

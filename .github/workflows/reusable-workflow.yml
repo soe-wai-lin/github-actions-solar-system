@@ -1,11 +1,11 @@
 name: Testing - Reusable Workflow
 on: 
    workflow_call:
-    inputs:
-         ingress-url:
-            required: true
-            type: string
-            description: "Provide the Ingress URL"
+    # inputs:
+    #      ingress-url:
+    #         required: true
+    #         type: string
+    #         description: "Provide the Ingress URL"
 jobs:
     unit-testing:
       name: Unit Testing

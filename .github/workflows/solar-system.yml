@@ -12,7 +12,7 @@
     MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
   jobs:
     workflow_call:
-      uses: .github/workflows/reusable-workflow.yml
+      uses: ./.github/workflows/reusable-workflow.yml
     # unit-testing:
     #   name: Unit Testing
     #   runs-on: ubuntu-latest

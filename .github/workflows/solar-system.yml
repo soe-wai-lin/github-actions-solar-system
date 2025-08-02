@@ -17,9 +17,16 @@
         mongo_passwd: ${{ secrets.MONGO_PASSWORD }}
       with:
         mongo_uri: ${{ vars.MONGO_URI }}
+
     code-coverage-workflow-call:
       needs: unit-testing-workflow_call
       uses: ./.github/workflows/reuse-code-coverage.yml
+
+    docker-build-workflow-call:
+      needs: code-coverage-workflow-call
+      uses: ./.github/workflows/reuse-docker-push.yml
+      secrets:
+        githut_token: ${{ secrets.GITHUB_TOKEN }}
 
 
     # unit-testing:
@@ -81,27 +88,27 @@
     #         path: coverage
     #         retention-days: 5
 
-    docker:
-      name: docker build
-      needs: code-coverage-workflow-call
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout repo
-          uses: actions/checkout@v4.2.2
+    # docker:
+    #   name: docker build
+    #   needs: code-coverage-workflow-call
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #     - name: checkout repo
+    #       uses: actions/checkout@v4.2.2
 
-        - name: DockerLogin
-          uses: docker/login-action@v3.4.0
-          with:
-            registry: ghcr.io
-            username: ${{ github.repository_owner }}
-            password: ${{ secrets.GITHUB_TOKEN }}
+    #     - name: DockerLogin
+    #       uses: docker/login-action@v3.4.0
+    #       with:
+    #         registry: ghcr.io
+    #         username: ${{ github.repository_owner }}
+    #         password: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Build and push Docker images
-          uses: docker/build-push-action@v6.18.0
-          with:
-            push: true
-            tags: 'ghcr.io/${{ github.repository_owner}}/solar-system:${{ github.sha }}'
-            context: .
+    #     - name: Build and push Docker images
+    #       uses: docker/build-push-action@v6.18.0
+    #       with:
+    #         push: true
+    #         tags: 'ghcr.io/${{ github.repository_owner}}/solar-system:${{ github.sha }}'
+    #         context: .
 
     # dev-deploy:
     #   name: dev-deployment

@@ -18,6 +18,7 @@
       with:
         mongo_uri: ${{ vars.MONGO_URI }}
     code-coverage-workflow-call:
+      needs: unit-testing-workflow_call
       uses: ./.github/workflows/reuse-code-coverage.yml
 
 

@@ -6,6 +6,9 @@ on:
     #         required: true
     #         type: string
     #         description: "Provide the Ingress URL"
+    secrets:
+      mongo_passwd: 
+        required: true
 jobs:
     unit-testing:
       name: Unit Testing

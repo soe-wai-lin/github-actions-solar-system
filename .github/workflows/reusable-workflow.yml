@@ -9,6 +9,11 @@ on:
     secrets:
       mongo_passwd: 
         required: true
+    inputs:
+        mongo_url:
+            required: true
+            type: string
+            
 jobs:
     unit-testing:
       name: Unit Testing

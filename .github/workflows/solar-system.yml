@@ -15,6 +15,9 @@
       uses: ./.github/workflows/reusable-workflow.yml
       secrets: 
         mongo_passwd: ${{ secrets.MONGO_PASSWORD }}
+      with:
+        inputs:
+          mongo_url: ${{ vars.MONGO_URI }}
     # unit-testing:
     #   name: Unit Testing
     #   runs-on: ubuntu-latest

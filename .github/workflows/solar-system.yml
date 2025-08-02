@@ -82,6 +82,7 @@
 
     docker:
       name: docker build
+      needs: code-coverage-workflow-call
       runs-on: ubuntu-latest
       steps:
         - name: checkout repo

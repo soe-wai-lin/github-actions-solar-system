@@ -58,4 +58,4 @@
           with:
             name: Code-coverage-Result
             path: coverage
-            rentention-days: 5
+            retention-days: 5

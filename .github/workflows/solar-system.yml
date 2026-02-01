@@ -26,6 +26,8 @@
           run: npm install
         - name: Unit Testing
           run: npm test
+
+        - name: Archive Test Result
           if: always()
           uses: actions/upload-artifact@v4
           with:
